@@ -94,7 +94,7 @@ const FallbackHandler = {
 
     handle(handlerInput) {
         return handlerInput.responseBuilder
-            .speak("I'm sorry, something went wrong. Say continue to continue?")
+            .speak("I'm sorry. I didn't understand you. You could please say your answer again?")
             .reprompt('Could you please say your answer again?')
             .getResponse();
     },
@@ -115,13 +115,14 @@ const ErrorHandler = {
     },
 };
 
-//QuestionsIntent - All questions are placed here
+
 
 //Set all points to 0, otherwise they do not reset
 var friendspoints = 0;
 var workpoints = 0;
 var childpoints = 0;
 
+//QuestionsIntent - All questions are placed here
 const QuestionsIntent = {
     canHandle(handlerInput) {
         const request = handlerInput.requestEnvelope.request;
@@ -604,7 +605,7 @@ function CheckResponseConclusion(handlerInput, points, conclusionstring){
         ConclusionString += '<break time="0.75s"/> It seems to be going well for the most part with your work, although you do have to watch out for those minor bad sides.'
     }
     else if(workpoints > 3){
-        ConclusionString += '<break time="0.75s"/> You seem to be going great in your career. Keep this going and there will be a lot more opportunities waiting for you.'
+        ConclusionString += '<break time="0.75s"/> You seem to be doing great in your career. Keep this going and there will be a lot more opportunities waiting for you.'
     }
     else{
         ConclusionString += '<break time="0.75s"/> Your career seems to have some good and bad sides to it. Try to focus on the positive aspects.'
@@ -614,7 +615,7 @@ function CheckResponseConclusion(handlerInput, points, conclusionstring){
         ConclusionString += '<break time="0.75s"/> It seems you’ve had a very rough childhood. Don’t let it get you down too much. Your past does not define who you are today, so look towards your future.'
     }
     else if(childpoints >= -3 && childpoints < 0 ){
-        ConclusionString += '<break time="0.75s"/> You have had some troubles in the past, but it doesn’t need to have a huge impact on you nowadays. Try not to think about the past too much.'
+        ConclusionString += '<break time="0.75s"/> You have had some troubles in the past, but it doesn’t need to have a huge impact on you. Try not to think about the past too much.'
     }
     else if(childpoints > 0 && childpoints <= 3){
         ConclusionString += '<break time="0.75s"/> Although you might have experienced some setbacks, overall you seemed to be doing well during your childhood.'
@@ -631,7 +632,7 @@ function CheckResponseConclusion(handlerInput, points, conclusionstring){
     }
     
     else if (points >= 2){
-        ConclusionString += '<break time="0.75s"/> Finally, overall you seem to be doing pretty well. I wouldn’t worry too much about it.'
+        ConclusionString += '<break time="0.75s"/> Finally, you seem to be doing pretty well overall. I wouldn’t worry too much about it.'
     }
     
     else if (points <= -2 ){
